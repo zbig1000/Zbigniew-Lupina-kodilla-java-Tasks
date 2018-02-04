@@ -19,10 +19,10 @@ public class TaskController {
     public TaskDto getTask(@PathVariable("taskId") String taskId){
         Long id = 0L;
         try {
-            id = Long.getLong(taskId);
+            id = new Long(taskId);
         }
-        catch (NumberFormatException nfe) {
-            // do nothing
+        catch (Exception nfe) {
+            //noting
         }
         return new TaskDto(id, "test title", "content");
     }
@@ -31,11 +31,12 @@ public class TaskController {
     public void deleteTask(@PathVariable("taskId") String taskId) {
         Long id = 0L;
         try {
-            id = Long.getLong(taskId);
+            id = new Long(taskId);
         }
         catch (NumberFormatException nfe) {
             // do nothing
         }
+
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
