@@ -16,24 +16,12 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getTask/{taskId}")
-    public TaskDto getTask(@PathVariable("taskId") String taskId) {
-        Long id = 0L;
-        try {
-            id = new Long(taskId);
-        } catch (Exception nfe) {
-            //noting
-        }
-        return new TaskDto(id, "test title", "content");
+    public TaskDto getTask(@PathVariable("taskId") Long taskId) {
+        return new TaskDto(taskId, "test title", "content");
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/{taskId}")
-    public void deleteTask(@PathVariable("taskId") String taskId) {
-        Long id = 0L;
-        try {
-            id = new Long(taskId);
-        } catch (NumberFormatException nfe) {
-            // do nothing
-        }
+    public void deleteTask(@PathVariable("taskId") Long taskId) {
 
     }
 
@@ -52,7 +40,7 @@ public class TaskController {
             value = "createTaskDirectly",
             params = {"taskId"}
     )
-    public TaskDto createTaskDirectly(@RequestParam() String taskId)
+    public TaskDto createTaskDirectly(@RequestParam() Long taskId)
 {
         Long newID = new Long(taskId);
         return new TaskDto(newID, "title", "content ok");
