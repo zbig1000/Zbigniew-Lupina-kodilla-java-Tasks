@@ -23,8 +23,8 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTask")
-    public TaskDto getTask(@RequestParam Long taskId)  {
+    @RequestMapping(method = RequestMethod.GET, value = "/getTask/{taskId}")
+    public TaskDto getTask(@PathVariable("taskId") Long taskId)   {
         TaskDto taskDto;
         try {
             taskDto = taskMapper.mapToTaskDto(service.findById(taskId).get());
@@ -36,8 +36,8 @@ public class TaskController {
         return taskDto;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
-    public void deleteTask(@RequestParam Long taskId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/{taskId}")
+    public void deleteTask(@PathVariable("taskId") Long taskId) {
         service.deleteTask(taskId);
     }
 
@@ -52,14 +52,5 @@ public class TaskController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
      public void createTask(@RequestBody TaskDto taskDto) {
         service.saveTask(taskMapper.mapToTask(taskDto));
-    }
-
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "createTaskDirectly",
-            params = {"taskId"}
-    )
-    public TaskDto createTaskDirectly(@RequestParam() Long taskId) {
-        return new TaskDto(taskId, "title", "content ok");
     }
 }
