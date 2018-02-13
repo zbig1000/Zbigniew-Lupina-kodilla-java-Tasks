@@ -27,7 +27,7 @@ public class TaskController {
     public TaskDto getTask(@PathVariable("taskId") Long taskId)   {
         TaskDto taskDto;
         try {
-            taskDto = taskMapper.mapToTaskDto(service.findById(taskId).get());
+            taskDto = taskMapper.mapToTaskDto(service.findTaskById(taskId));
         }
         catch (TaskNotFoundException ex) {
             System.out.println("task id "+taskId+ " not found");
