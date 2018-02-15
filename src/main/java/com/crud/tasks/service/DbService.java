@@ -18,12 +18,8 @@ public class DbService {
         return repository.findAll();
     }
 
-    private Optional<Task> findById(Long id) {
-        return repository.findById(id);
-    }
-
     public Task findTaskById(Long id) throws TaskNotFoundException {
-        return findById(id).orElseThrow(() -> new TaskNotFoundException("no Task ID "+ id +" found"));
+        return repository.findById(id).orElseThrow(() -> new TaskNotFoundException("no Task ID "+ id +" found"));
     }
 
     public Task saveTask(final Task task) {
