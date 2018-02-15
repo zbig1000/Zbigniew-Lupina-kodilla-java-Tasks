@@ -23,7 +23,7 @@ public class DbService {
     }
 
     public Task findTaskById(Long id) throws TaskNotFoundException {
-        return findById(id).orElseThrow(TaskNotFoundException::new);
+        return findById(id).orElseThrow(() -> new TaskNotFoundException("no Task ID "+ id +" found"));
     }
 
     public Task saveTask(final Task task) {
