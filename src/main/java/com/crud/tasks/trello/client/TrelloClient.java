@@ -37,7 +37,6 @@ public class TrelloClient {
         TrelloBoardDto[] boardsRespone = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
         return Optional.ofNullable(boardsRespone).map(Arrays::asList).orElseGet(ArrayList::new);
-
     }
 
     private URI getURL(String serverAddress, String key, String token, String user) {
@@ -46,6 +45,5 @@ public class TrelloClient {
                 .queryParam("token", token)
                 .queryParam("lists", "all")
                 .queryParam("fields", "name,id").build().encode().toUri();
-
     }
 }
