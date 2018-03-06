@@ -8,11 +8,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonDtoBadges {
+public class BadgesJsonDto {
 
     @JsonProperty("votes")
     private Integer votes;
 
     @JsonProperty("attachmentsByType")
-    private JsonDtoAttachmentsByType jsonDtoAttachmentsByType;
+    private AttachmentsByTypeJsonDto attachmentsByTypeJsonDto;
 }

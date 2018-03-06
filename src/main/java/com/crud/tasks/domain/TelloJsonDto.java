@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonDtoTello {
+public class TelloJsonDto {
 
     @JsonProperty("board")
     private Integer board;

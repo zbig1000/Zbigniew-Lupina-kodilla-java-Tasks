@@ -8,8 +8,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonDtoAttachmentsByType {
+public class AttachmentsByTypeJsonDto {
 
     @JsonProperty("trello")
-    private JsonDtoTello tello;
+    private TelloJsonDto tello;
 }
