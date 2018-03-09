@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    const apiRoot = 'http://localhost:8080/v1/task/';
-    const trelloApiRoot = 'http://localhost:8080/v1/trello/';
+    const apiRoot = 'https://blooming-crag-57164.herokuapp.com/v1/task/';
+    const trelloApiRoot = 'https://blooming-crag-57164.herokuapp.com/v1/trello/';
     const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
     const $tasksContainer = $('[data-tasks-container]');
 
@@ -104,16 +104,15 @@ $(document).ready(function() {
             }
         });
     }
+//    var requestUrl = apiRoot + 'deleteTask/' + taskId;
 
     function handleTaskDeleteRequest() {
         var parentEl = $(this).parents('[data-task-id]');
         var taskId = parentEl.attr('data-task-id');
-        var requestUrl = apiRoot + 'deleteTask';
+        var requestUrl = apiRoot + 'deleteTask/' + taskId ;
 
         $.ajax({
-            url: requestUrl + '/?' + $.param({
-                taskId: taskId
-            }),
+            url: requestUrl,
             method: 'DELETE',
             success: function() {
                 parentEl.slideUp(400, function() { parentEl.remove(); });
