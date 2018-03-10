@@ -18,6 +18,6 @@ public class Mail {
     @NonNull
     private String message;
 
-    private Optional<String> toCc;
+    private String toCc;
 
 }
