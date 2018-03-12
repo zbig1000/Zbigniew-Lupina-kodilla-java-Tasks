@@ -28,7 +28,7 @@ public class EmailScheduler {
         simpleEmailService.send(new Mail(
                 adminConfig.getAdminMail(),
                 SUBJECT,
-                (size == 1) ? "Currentrly in database you got: " + size + " task" : "Currentrly in database you got: " + size + " tasks"
+                "Currentrly in database you got: " + size + ((size == 1) ? " task" : " tasks")
         ));
     }
 }
