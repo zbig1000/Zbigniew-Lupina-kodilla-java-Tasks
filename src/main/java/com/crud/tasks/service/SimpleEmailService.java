@@ -15,7 +15,7 @@ import java.util.Optional;
 public class SimpleEmailService {
 
     @Autowired
-    private  JavaMailSender javaMailSenderSender;
+    private JavaMailSender javaMailSenderSender;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleMailMessage.class);
 
@@ -34,7 +34,9 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        Optional.ofNullable(mail.getToCc()).filter(cc->!cc.isEmpty()).ifPresent(cc->mailMessage.setCc(cc));
+        Optional.ofNullable(mail.getToCc())
+                .filter(cc -> !cc.isEmpty())
+                .ifPresent(cc -> mailMessage.setCc(cc));
         return mailMessage;
     }
 
