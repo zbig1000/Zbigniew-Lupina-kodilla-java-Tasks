@@ -54,11 +54,9 @@ $(document).ready(function() {
             var $datatableRowEl = createElement(task);
             var $availableBoardsOptionElements = prepareBoardOrListSelectOptions(boards);
 
-            $datatableRowEl.find('[data-board-name-select]')
-                .append($availableBoardsOptionElements);
+            $datatableRowEl.find('[data-board-name-select]').append($availableBoardsOptionElements);
 
-            $datatableRowEl
-                .appendTo($tasksContainer);
+            $datatableRowEl.appendTo($tasksContainer);
         });
     }
 
@@ -137,7 +135,11 @@ $(document).ready(function() {
                 title: taskTitle,
                 content: taskContent
             }),
-            success: getAllTasks
+            complete: function(data) {
+                if(data.status == 200) {
+                    getAllTasks();
+                }
+            }
         });
     }
 
