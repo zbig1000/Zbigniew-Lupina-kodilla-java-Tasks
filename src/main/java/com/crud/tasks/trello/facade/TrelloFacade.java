@@ -6,12 +6,12 @@ import com.crud.tasks.trello.validator.TrelloValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.crud.tasks.mapper.TrelloMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class TrelloFacade {
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloFacade.class);
 
@@ -33,6 +33,6 @@ public class TrelloFacade {
     public CreatedTrelloCardDto createCard(final TrelloCardDto trelloCardDto) {
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
         trelloValidator.validateCard(trelloCard);
-        return trelloService.createdTrelloCard(trelloMapper.mapTocardDto(trelloCard));
+        return trelloService.createdTrelloCard(trelloMapper.mapToCardDto(trelloCard));
     }
 }
