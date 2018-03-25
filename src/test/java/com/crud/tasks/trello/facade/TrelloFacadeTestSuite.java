@@ -37,10 +37,6 @@ public class TrelloFacadeTestSuite {
     @Spy
     private TrelloMapper trelloMapper;
 
-    @Before
-    public void init() {
-    }
-
     @Test
     public void shouldFetchTrelloBoards() {
         //Given
