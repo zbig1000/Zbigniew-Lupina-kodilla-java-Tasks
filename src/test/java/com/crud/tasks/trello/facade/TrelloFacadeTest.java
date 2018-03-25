@@ -16,6 +16,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -97,5 +99,44 @@ public class TrelloFacadeTest {
                 assertEquals(false, trelloListDto.isClosed());
             });
         });
+    }
+
+
+    @Test
+    public void shouldCreateCard() {
+        //Given
+        final TrelloCardDto trelloCardDto = new TrelloCardDto(
+                "Test task",
+                "Test description",
+                "top",
+                "test_id"
+        );
+
+        final CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
+                "1",
+                "test",
+                "http://test.com",
+                null
+        );
+
+        final TrelloCard trelloCard = new TrelloCard(
+                "Test task",
+                "Test description",
+                "top",
+                "test_id");
+
+        when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
+        when(trelloMapper.mapToCardDto(trelloCard)).thenReturn(trelloCardDto);
+        when(trelloService.createdTrelloCard(trelloCardDto)).thenReturn(createdTrelloCardDto);
+
+        // When
+        CreatedTrelloCardDto newCard = trelloFacade.createCard(trelloCardDto);
+
+        // Then
+        verify(trelloService, times(1)).createdTrelloCard(trelloCardDto);
+
+        assertEquals("1", newCard.getId());
+        assertEquals("test", newCard.getName());
+        assertEquals("http://test.com", newCard.getShortUrl());
     }
 }
