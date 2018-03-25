@@ -43,7 +43,7 @@ public class TrelloFacadeTestSuite {
     }
 
     @Test
-    public void shouldFetchTrelloBoards() throws URISyntaxException {
+    public void shouldFetchTrelloBoards() {
         //Given
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
         trelloBoards.add(new TrelloBoardDto("test_id","test",  new ArrayList<>()));
