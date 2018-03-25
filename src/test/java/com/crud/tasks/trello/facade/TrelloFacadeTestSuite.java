@@ -13,12 +13,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,14 +64,14 @@ public class TrelloFacadeTestSuite {
     @Test
     public void shouldCreateCard() {
         //Given
-        TrelloCardDto trelloCardDto = new TrelloCardDto(
+        final TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
                 "Test description",
                 "top",
                 "test_id"
         );
 
-        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
+        final CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",
                 "test",
                 "http://test.com",
@@ -81,6 +84,7 @@ public class TrelloFacadeTestSuite {
         CreatedTrelloCardDto newCard = trelloFacade.createCard(trelloCardDto);
 
         //Then
+        verify(trelloService, times(1)).createdTrelloCard(trelloCardDto);
         assertEquals("1", newCard.getId());
         assertEquals("test", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
