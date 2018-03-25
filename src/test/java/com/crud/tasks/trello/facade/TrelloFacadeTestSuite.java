@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
