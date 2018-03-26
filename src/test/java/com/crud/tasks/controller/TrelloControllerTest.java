@@ -96,7 +96,6 @@ public class TrelloControllerTest {
         String jsonContent = gson.toJson(trelloCardDto);
 
         //When & Then
-        //When & Then
         mockMvc.perform(post("/v1/trello/createTrelloCard")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
