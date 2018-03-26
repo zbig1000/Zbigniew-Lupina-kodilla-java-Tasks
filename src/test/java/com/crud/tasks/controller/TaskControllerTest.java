@@ -2,7 +2,10 @@ package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.TaskDto;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +17,21 @@ import static org.junit.Assert.*;
 
 public class TaskControllerTest {
 
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private TaskController taskController;
+
     @Test
     public void getTasks() {
     }
+
+    //    @RequestMapping(method = RequestMethod.GET, value = "/getTasks")
+//    public List<TaskDto> getTasks() {
+//        return taskMapper.mapToTaskDtoList(service.getAllTasks());
+//    }
+
 
     @Test
     public void getTask() {
@@ -35,10 +50,7 @@ public class TaskControllerTest {
     }
 
 //
-//    @RequestMapping(method = RequestMethod.GET, value = "/getTasks")
-//    public List<TaskDto> getTasks() {
-//        return taskMapper.mapToTaskDtoList(service.getAllTasks());
-//    }
+
 //
 //    @RequestMapping(method = RequestMethod.GET, value = "/getTask/{taskId}")
 //    public TaskDto getTask(@PathVariable("taskId") Long taskId) throws TaskNotFoundException  {
