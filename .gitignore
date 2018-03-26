@@ -15,7 +15,6 @@
 *.iws
 *.iml
 *.ipr
-*.properties
 
 ### NetBeans ###
 nbproject/private/
@@ -28,5 +27,5 @@ nbdist/
 out/
 out
 build
-src/main/resources/application.properties
+
 
