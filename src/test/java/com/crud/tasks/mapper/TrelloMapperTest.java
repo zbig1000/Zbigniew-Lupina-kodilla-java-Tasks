@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrelloMapperTest {
-    @Spy
-    private TrelloMapper trelloMapper;
+
+    private TrelloMapper trelloMapper = new TrelloMapper();
 
     @Test
     public void mapToBoards() {
