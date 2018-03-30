@@ -95,7 +95,8 @@ public class TaskControllerTest {
 
         when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
         when(taskMapper.mapToTask(taskDto)).thenReturn(task);
-        when(taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)))).thenReturn(taskDto);
+        when(service.saveTask(task)).thenReturn(task);
+//        when(taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)))).thenReturn(taskDto);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
