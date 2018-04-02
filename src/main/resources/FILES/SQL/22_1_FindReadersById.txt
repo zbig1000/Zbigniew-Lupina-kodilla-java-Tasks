@@ -1,0 +1,12 @@
+drop function if exists FindReadersById;
+delimiter $$
+create function FindReadersById(ID INT) returns varchar(255) 
+	begin  
+	declare result varchar(255) default 'none found';
+	if ID <= 0 then SET result = 'Error , ID is incorrect';
+		else
+		select distinct CONCAT(FIRSTNAME, " ", LASTNAME) into result  from Readers where READER_ID = ID ; 
+	end if;
+RETURN result ;
+end  $$
+delimiter ;
