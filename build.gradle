@@ -48,6 +48,7 @@ dependencies {
 
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.0.0.RELEASE'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.0.1.RELEASE'
 
 //	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
