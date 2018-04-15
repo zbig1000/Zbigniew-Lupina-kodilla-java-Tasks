@@ -40,7 +40,7 @@ public class TrelloFacadeTestSuite {
     public void shouldFetchTrelloBoards() {
         //Given
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
-        trelloBoards.add(new TrelloBoardDto("test_id","test",  new ArrayList<>()));
+        trelloBoards.add(new TrelloBoardDto("test_id","NewBoard",  new ArrayList<>()));
 
         when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
 
@@ -50,7 +50,7 @@ public class TrelloFacadeTestSuite {
         //Then
         assertEquals(1, fetchedTrelloBoards.size());
         assertEquals("test_id", fetchedTrelloBoards.get(0).getId());
-        assertEquals("test", fetchedTrelloBoards.get(0).getName());
+        assertEquals("NewBoard", fetchedTrelloBoards.get(0).getName());
         assertEquals(new ArrayList<>(), fetchedTrelloBoards.get(0).getLists());
     }
 

@@ -18,7 +18,6 @@ import java.util.*;
 
 @Component
 public class TrelloClient {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloClient.class);
 
     @Autowired
@@ -28,15 +27,11 @@ public class TrelloClient {
     private RestTemplate restTemplate;
 
     public List<TrelloBoardDto> getTrelloBoards() {
-
         URI url = getURL(trelloConfig.getTrelloApiEndpoint(), trelloConfig.getTrelloAppKey(), trelloConfig.getTrelloToken(), trelloConfig.getUsername());
-
         try {
             TrelloBoardDto[] boardsRespone = restTemplate.getForObject(url, TrelloBoardDto[].class);
             return Optional.ofNullable(boardsRespone).map(Arrays::asList).orElseGet(Collections::emptyList);
 //            return Arrays.asList(Optional.ofNullable(boardsRespone).orElse(new TrelloBoardDto[0]));
-
-
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
