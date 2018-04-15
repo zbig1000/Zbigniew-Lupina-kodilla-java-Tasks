@@ -28,7 +28,7 @@ public class SimpleEmailService {
     public void send(final Mail mail) {
         LOGGER.info("starting email preparation...");
         try {
-            javaMailSenderSender.send(createMimeMessage(mail));
+            javaMailSenderSender.send(createMailMessage(mail));
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
             LOGGER.error("failed email sending ", e.getMessage(), e);
@@ -48,7 +48,10 @@ public class SimpleEmailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()));
+        mailMessage.setText(mail.getMessage());
+        Optional.ofNullable(mail.getToCc())
+                .filter(cc -> !cc.isEmpty())
+                .ifPresent(cc -> mailMessage.setCc(cc));
         return mailMessage;
     }
 
